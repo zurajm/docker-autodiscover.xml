@@ -1,10 +1,13 @@
 # autodiscover-email-settings
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/weboaks/autodiscover-email-settings.svg)](https://hub.docker.com/r/weboaks/autodiscover-email-settings/) [![Docker layers](https://images.microbadger.com/badges/image/weboaks/autodiscover-email-settings.svg)](https://microbadger.com/images/weboaks/autodiscover-email-settings)
+[![Docker Pulls](https://img.shields.io/docker/pulls/wobblybob/autodiscover-email-settings.svg)](https://hub.docker.com/r/wobblybob/autodiscover-email-settings/) [![Docker layers](https://images.microbadger.com/badges/image/wobblybob/autodiscover-email-settings.svg)](https://microbadger.com/images/wobblybob/autodiscover-email-settings)
 
 This service is created to autodiscover your provider email settings.
 
 It provides IMAP/SMTP Autodiscover capabilities on Microsoft Outlook/Apple Mail, Autoconfig capabilities for Thunderbird, and Configuration Profiles for iOS/Apple Mail.
+
+This is a clone of weboaks/autodiscover-email-settings and has had extra variables added to allow for STARTTLS and different Password Types
+
 
 ### DNS settings
 
@@ -41,13 +44,16 @@ version: '2'
 
 services:
   autodiscover-domain-com:
-    image: weboaks/autodiscover-email-settings:latest
+    image: wobblybob/autodiscover-email-settings:latest
     environment:
     - DOMAIN=domain.com
     - IMAP_HOST=imap.domain.com
     - IMAP_PORT=993
+    - IMAP_AUTHTYPE=password-cleartext
     - SMTP_HOST=smtp.domain.com
-    - SMTP_PORT=465
+    - SMTP_PORT=587
+    - SMTP_PROTOCOL=STARTTLS
+    - SMTP_AUTHTYPE=password-cleartext
     labels:
       - "traefik.port=8000"
       - "traefik.frontend.rule=Host:autoconfig.domain.com,autodiscover.domain.com"
@@ -60,7 +66,7 @@ version: '3'
 
 services:
   autodiscover-domain-com:
-    image: weboaks/autodiscover-email-settings:latest
+    image: wobblybob/autodiscover-email-settings:latest
     environment:
     - DOMAIN=domain.com
     - IMAP_HOST=imap.domain.com
@@ -75,7 +81,7 @@ services:
 ```
 
 ### Credits
-
+Forked from https://github.com/sylvaindumont/autodiscover.xml to allow extra Environment Variables for STARTTLS and Clear/Encrypted Passwords
 Inspired from https://github.com/johansmitsnl/docker-email-autodiscover, but with https://github.com/Tiliq/autodiscover.xml instead of https://github.com/gronke/email-autodiscover to allow a much lighter ([![](https://images.microbadger.com/badges/image/weboaks/autodiscover-email-settings.svg)](https://microbadger.com/images/weboaks/autodiscover-email-settings)) image based of node on alpine instead of apache on debian ([![](https://images.microbadger.com/badges/image/jsmitsnl/docker-email-autodiscover.svg)](https://microbadger.com/images/jsmitsnl/docker-email-autodiscover))
 
 ### Notes

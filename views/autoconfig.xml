@@ -9,16 +9,16 @@
 	    <incomingServer type="imap">
 			<hostname>{{imap.host}}</hostname>
 			<port>{{imap.port}}</port>
-			<socketType>SSL</socketType>
-			<authentication>password-cleartext</authentication>
+			<socketType>{{imap.protocol}}</socketType>
+			<authentication>{{imap.authtype}}</authentication>
 			<username>%EMAILADDRESS%</username>
-		</incomingServer>
+	    </incomingServer>
 
 	    <outgoingServer type="smtp">
 			<hostname>{{smtp.host}}</hostname>
 			<port>{{smtp.port}}</port>
-			<socketType>SSL</socketType>
-			<authentication>password-cleartext</authentication>
+			<socketType>{{smtp.protocol}}</socketType>
+			<authentication>{{smtp.authtype}}</authentication>
 			<username>%EMAILADDRESS%</username>
 	    </outgoingServer>
 	</emailProvider>

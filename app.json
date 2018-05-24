@@ -20,6 +20,14 @@
 			"description": "Your Secure IMAP Port",
 			"value": "993"
 		},
+		"IMAP_PROTOCOL": {
+			"description": "IMAP Protocol Type (SSL/STARTTLS)",
+			"value": "SSL"
+		},
+		"IMAP_AUTHTYPE": {
+			"description": "IMAP Password Type (passworc-cleartext,password-encrypted)",
+			"value": "password-cleartext"
+		},
 		"SMTP_HOST": {
 			"description": "Your SMTP Host",
 			"value": "smtp.example.com"
@@ -27,6 +35,14 @@
 		"SMTP_PORT": {
 			"description": "Your Secure SMTP Port",
 			"value": "587"
+		},
+		"SMTP_PROTOCOL": {
+			"description": "SMTP Protocol Type (SSL/STARTTLS)",
+			"value": "STARTTLS"
+		},
+		"SMTP_AUTHTYPE": {
+			"description": "SMTP Password Type (passworc-cleartext,password-encrypted)",
+			"value": "password-cleartext"
 		}
 	}
 }

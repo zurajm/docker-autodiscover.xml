@@ -25,7 +25,9 @@ router.post('/Autodiscover/Autodiscover.xml', function *autodiscover() {
 	const username	= email.split('@')[0];
 	const domain	= email.split('@')[1];
 
-	yield this.render('autodiscover', {
+	let template = process.env.SMTP_PROTOCOL = 'STARTTLS' ? 'autodiscoverssl' : 'autodiscover'
+
+	yield this.render(template, {
 		schema: schema.content,
 		email,
 		username,
