@@ -1,6 +1,6 @@
 # autodiscover-email-settings
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/wobblybob/autodiscover-email-settings.svg)](https://hub.docker.com/r/wobblybob/autodiscover-email-settings/) [![Docker layers](https://images.microbadger.com/badges/image/wobblybob/autodiscover-email-settings.svg)](https://microbadger.com/images/wobblybob/autodiscover-email-settings)
+[![Docker Pulls](https://img.shields.io/docker/pulls/delacap/autodiscover.xml.svg)](https://hub.docker.com/r/delacap/autodiscover.xml/)
 
 This service is created to autodiscover your provider email settings.
 
