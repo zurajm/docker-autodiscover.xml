@@ -10,7 +10,7 @@
 			<key>EmailAccountDescription</key>
 			<string>{{email}}</string>
 			<key>EmailAccountName</key>
-			<string>{{email}}</string>
+			<string>{{name}}</string>
 			<key>EmailAccountType</key>
 			<string>EmailTypeIMAP</string>
 			<key>EmailAddress</key>
