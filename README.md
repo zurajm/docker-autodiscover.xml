@@ -1,6 +1,6 @@
 # autodiscover-email-settings
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/delacap/autodiscover.xml.svg)](https://hub.docker.com/r/delacap/autodiscover.xml/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/delacap/autodiscover-email-settings.svg)](https://hub.docker.com/r/delacap/autodiscover-email-settings/)
 
 This service is created to autodiscover your provider email settings.
 
