@@ -1,6 +1,6 @@
 module.exports = {
 	sync: process.env.SYNC_URL || "",
-	hasSync: process.env.SYNC_URL !== (process.env.SYNC_URL || ""),
+	hasSync: "" !== (process.env.SYNC_URL || ""),
 	imap: {
 		host: process.env.IMAP_HOST,
 		port: process.env.IMAP_PORT,
