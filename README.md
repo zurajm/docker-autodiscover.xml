@@ -1,6 +1,6 @@
 # autodiscover-email-settings
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/delacap/autodiscover-email-settings.svg)](https://hub.docker.com/r/delacap/autodiscover-email-settings/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/barfittc/autodiscover.svg)](https://hub.docker.com/r/barfittc/autodiscover/)
 
 This service is created to autodiscover your provider email settings.
 
@@ -44,7 +44,7 @@ version: '2'
 
 services:
   autodiscover-domain-com:
-    image: wobblybob/autodiscover-email-settings:latest
+    image: barfittc/autodiscover:latest
     environment:
       SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
       IMAP_HOST: imap.domain.com
@@ -67,7 +67,7 @@ version: '3'
 
 services:
   autodiscover-domain-com:
-    image: wobblybob/autodiscover-email-settings:latest
+    image: barfittc/autodiscover:latest
     environment:
       SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
       IMAP_HOST: imap.domain.com
@@ -85,10 +85,6 @@ services:
         - "traefik.frontend.rule=Host:autoconfig.domain.com,autodiscover.domain.com"
 ```
 
-### Credits
-Forked from https://github.com/sylvaindumont/autodiscover.xml to allow extra Environment Variables for STARTTLS and Clear/Encrypted Passwords
-Inspired from https://github.com/johansmitsnl/docker-email-autodiscover, but with https://github.com/Tiliq/autodiscover.xml instead of https://github.com/gronke/email-autodiscover to allow a much lighter ([![](https://images.microbadger.com/badges/image/weboaks/autodiscover-email-settings.svg)](https://microbadger.com/images/weboaks/autodiscover-email-settings)) image based of node on alpine instead of apache on debian ([![](https://images.microbadger.com/badges/image/jsmitsnl/docker-email-autodiscover.svg)](https://microbadger.com/images/jsmitsnl/docker-email-autodiscover))
-
 ### Notes
 
 SYNC_URL: is optional, point it to your ActiveSync path
@@ -101,3 +97,9 @@ The above autoconfiguration methods assume the following:
 ### License
 
 This project is distributed under the [MIT License](LICENSE)
+
+
+### Credits
+Forked from https://github.com/harrydeluxe/autodiscover.xml to allow extra Environment Variable for Active Sync, and fixed xml up a bit
+Forked from https://github.com/sylvaindumont/autodiscover.xml to allow extra Environment Variables for STARTTLS and Clear/Encrypted Passwords
+Inspired from https://github.com/johansmitsnl/docker-email-autodiscover, but with https://github.com/Tiliq/autodiscover.xml instead of https://github.com/gronke/email-autodiscover to allow a much lighter ([![](https://images.microbadger.com/badges/image/weboaks/autodiscover-email-settings.svg)](https://microbadger.com/images/weboaks/autodiscover-email-settings)) image based of node on alpine instead of apache on debian ([![](https://images.microbadger.com/badges/image/jsmitsnl/docker-email-autodiscover.svg)](https://microbadger.com/images/jsmitsnl/docker-email-autodiscover))
