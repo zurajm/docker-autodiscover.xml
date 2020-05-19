@@ -19,8 +19,8 @@
         </Action>
 
     </Response>
-	
-	{% endif %}><Response xmlns="{{schema}}">
+
+	{% endif %}<Response xmlns="{{schema}}">
 
 		<User>
 			<DisplayName>{{email}}</DisplayName>
@@ -45,7 +45,7 @@
 
 				<SPA>off</SPA>
 				<AuthRequired>on</AuthRequired>
-				{% if imap.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}>
+				{% if imap.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}
 			</Protocol>
 		</Account>
 
@@ -67,7 +67,7 @@
 
 				<SPA>off</SPA>
 				<AuthRequired>on</AuthRequired>
-				{% if smtp.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}>
+				{% if smtp.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}
 			</Protocol>
 		</Account>
 
