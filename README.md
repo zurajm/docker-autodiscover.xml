@@ -46,14 +46,15 @@ services:
   autodiscover-domain-com:
     image: wobblybob/autodiscover-email-settings:latest
     environment:
-    - DOMAIN=domain.com
-    - IMAP_HOST=imap.domain.com
-    - IMAP_PORT=993
-    - IMAP_AUTHTYPE=password-cleartext
-    - SMTP_HOST=smtp.domain.com
-    - SMTP_PORT=587
-    - SMTP_PROTOCOL=STARTTLS
-    - SMTP_AUTHTYPE=password-cleartext
+      SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
+      IMAP_HOST: imap.domain.com
+      IMAP_PORT: "993"
+      IMAP_PROTOCOL: STARTTLS
+      IMAP_AUTHTYPE: password-cleartext
+      SMTP_HOST: smtp.domain.com
+      SMTP_PORT: "587"
+      SMTP_PROTOCOL: STARTTLS
+      SMTP_AUTHTYPE: password-cleartext
     labels:
       - "traefik.port=8000"
       - "traefik.frontend.rule=Host:autoconfig.domain.com,autodiscover.domain.com"
@@ -68,11 +69,15 @@ services:
   autodiscover-domain-com:
     image: wobblybob/autodiscover-email-settings:latest
     environment:
-    - DOMAIN=domain.com
-    - IMAP_HOST=imap.domain.com
-    - IMAP_PORT=993
-    - SMTP_HOST=smtp.domain.com
-    - SMTP_PORT=587
+      SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
+      IMAP_HOST: imap.domain.com
+      IMAP_PORT: "993"
+      IMAP_PROTOCOL: STARTTLS
+      IMAP_AUTHTYPE: password-cleartext
+      SMTP_HOST: smtp.domain.com
+      SMTP_PORT: "587"
+      SMTP_PROTOCOL: STARTTLS
+      SMTP_AUTHTYPE: password-cleartext
     deploy:
       replicas: 1
       labels:
@@ -86,11 +91,12 @@ Inspired from https://github.com/johansmitsnl/docker-email-autodiscover, but wit
 
 ### Notes
 
+SYNC_URL: is optional, point it to your ActiveSync path
+
 The above autoconfiguration methods assume the following:
 
 * Username: `{{email}}` (Entire email address)
-* Encryption: SSL/TLS
-  .
+
 
 ### License
 

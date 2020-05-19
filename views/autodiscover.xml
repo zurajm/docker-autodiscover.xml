@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">
-	<Response xmlns="{{schema}}">
+
+	{% if hasSync %}<Response xmlns="http://schemas.microsoft.com/exchange/autodiscover/mobilesync/responseschema/2006">
+
+        <User>
+            <DisplayName>{{email}}</DisplayName>
+            <EMailAddress>{{email}}</EMailAddress>
+        </User>
+
+        <Action>
+            <Settings>
+                <Server>
+                    <Type>MobileSync</Type>
+                    <Url>{{sync}}</Url>
+                    <Name>{{sync}}</Name>
+                </Server>
+            </Settings>
+        </Action>
+
+    </Response>
+	
+	{% endif %}><Response xmlns="{{schema}}">
+
 		<User>
 			<DisplayName>{{email}}</DisplayName>
+            <EMailAddress>{{email}}</EMailAddress>
 		</User>
 
 		<Account>
@@ -22,8 +44,8 @@
 				<DomainName>{{domain}}</DomainName>
 
 				<SPA>off</SPA>
-				<SSL>on</SSL>
 				<AuthRequired>on</AuthRequired>
+				{% if imap.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}>
 			</Protocol>
 		</Account>
 
@@ -44,9 +66,11 @@
 				<DomainName>{{domain}}</DomainName>
 
 				<SPA>off</SPA>
-				<SSL>on</SSL>
 				<AuthRequired>on</AuthRequired>
+				{% if smtp.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}>
 			</Protocol>
 		</Account>
+
 	</Response>
+
 </Autodiscover>

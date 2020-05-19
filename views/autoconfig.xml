@@ -10,7 +10,7 @@
 			<hostname>{{imap.host}}</hostname>
 			<port>{{imap.port}}</port>
 			<socketType>{{imap.protocol}}</socketType>
-			<authentication>{{imap.authtype}}</authentication>
+			<authentication>{{imap.authType}}</authentication>
 			<username>%EMAILADDRESS%</username>
 	    </incomingServer>
 
@@ -18,7 +18,7 @@
 			<hostname>{{smtp.host}}</hostname>
 			<port>{{smtp.port}}</port>
 			<socketType>{{smtp.protocol}}</socketType>
-			<authentication>{{smtp.authtype}}</authentication>
+			<authentication>{{smtp.authType}}</authentication>
 			<username>%EMAILADDRESS%</username>
 	    </outgoingServer>
 	</emailProvider>

@@ -32,6 +32,7 @@
     "smtp"
   ],
   "dependencies": {
+    "mobileconfig": "^2.3.1",
     "koa": "^1.0.0",
     "koa-buddy": "^0.1.0",
     "koa-router": "^5.1.2",
