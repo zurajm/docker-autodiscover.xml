@@ -35,7 +35,7 @@ Replace above variables with data according to this table
 
 ### Usage
 
-[traefik](https://github.com/containous/traefik) can proxy your containers on docker, on docker swarm, and on a wide range of orchestrators
+Put it behind a reverse proxy of your choice
 
 #### docker
 
@@ -46,6 +46,11 @@ services:
   autodiscover-domain-com:
     image: barfittc/autodiscover:latest
     environment:
+      NAME_URL: "https://api.domain.com/namelookup?email={{email}}&apiKey=12ab34cd"
+      NAME_PROPERTY: Display_name
+      SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
+      ENROLL_URL: "https://cert.domain.com/CertEnroll"
+      CULTURE: "en:us"
       SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
       IMAP_HOST: imap.domain.com
       IMAP_PORT: "993"
@@ -55,9 +60,6 @@ services:
       SMTP_PORT: "587"
       SMTP_PROTOCOL: STARTTLS
       SMTP_AUTHTYPE: password-cleartext
-    labels:
-      - "traefik.port=8000"
-      - "traefik.frontend.rule=Host:autoconfig.domain.com,autodiscover.domain.com"
 ```
 
 #### docker swarm
@@ -69,7 +71,11 @@ services:
   autodiscover-domain-com:
     image: barfittc/autodiscover:latest
     environment:
+      NAME_URL: "https://api.domain.com/namelookup?email={{email}}&apiKey=12ab34cd"
+      NAME_PROPERTY: Display_name
       SYNC_URL: "https://sync.domain.com/Microsoft-Server-ActiveSync"
+      ENROLL_URL: "https://cert.domain.com/CertEnroll"
+      CULTURE: "en:us"
       IMAP_HOST: imap.domain.com
       IMAP_PORT: "993"
       IMAP_PROTOCOL: STARTTLS
@@ -78,11 +84,6 @@ services:
       SMTP_PORT: "587"
       SMTP_PROTOCOL: STARTTLS
       SMTP_AUTHTYPE: password-cleartext
-    deploy:
-      replicas: 1
-      labels:
-        - "traefik.port=8000"
-        - "traefik.frontend.rule=Host:autoconfig.domain.com,autodiscover.domain.com"
 ```
 
 ### Notes

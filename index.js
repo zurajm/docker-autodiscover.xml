@@ -9,6 +9,7 @@ const body			= require('koa-buddy');
 const router		= require('koa-router')();
 const settings		= require('./settings.js');
 const mobileconfig	= require('mobileconfig');
+const r2 			= require("r2");
 
 function findChild(name, children) {
 	for (let child of children) {
@@ -17,6 +18,23 @@ function findChild(name, children) {
 		}
 	}
 }
+var nameLookup 
+	= "" !== (process.env.NAME_URL || "")
+	? async function(email) {
+		try
+		{
+			var data = await r2(process.env.NAME_URL.replace("{{email}}", email)).json;
+			var name = data[0][process.env.NAME_PROPERTY];
+			return name === undefined ? email : name;
+		}
+		catch(_)
+		{
+			return email;
+		}
+	}
+	: async function(email) {
+		return email;
+	};
 
 // Microsoft Outlook / Apple Mail
 router.post('/Autodiscover/Autodiscover.xml', function *autodiscover() {
@@ -37,9 +55,11 @@ router.post('/Autodiscover/Autodiscover.xml', function *autodiscover() {
 
 	yield this.render('autodiscover', {
 		schema: schema.content,
+		hasSync: schema.content.includes("mobilesync"),
 		email,
 		username,
-		domain
+		domain,
+		displayName: yield nameLookup(email)
 	});
 });
 

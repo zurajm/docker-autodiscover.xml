@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">
 
-	{% if hasSync %}<Response xmlns="http://schemas.microsoft.com/exchange/autodiscover/mobilesync/responseschema/2006">
-
+	<Response xmlns="{{schema}}">
+	
         <User>
-            <DisplayName>{{email}}</DisplayName>
+            <DisplayName>{{displayName}}</DisplayName>
             <EMailAddress>{{email}}</EMailAddress>
         </User>
 
-        <Action>
+		{% if hasCulture %}<Culture>{{culture}}</Culture>{% endif %}
+		
+		{% if hasSync %}<Action>
+
             <Settings>
+
                 <Server>
                     <Type>MobileSync</Type>
                     <Url>{{sync}}</Url>
                     <Name>{{sync}}</Name>
-                </Server>
+                </Server>{% if hasEnroll %}
+				
+				<Server>
+                    <Type>CertEnroll</Type>
+                    <Url>{{enroll}}</Url>
+                    </Name>
+                    <ServerData>CertEnrollTemplate</ServerData>
+                </Server>{% endif %}
+
             </Settings>
-        </Action>
 
-    </Response>
-
-	{% endif %}<Response xmlns="{{schema}}">
-
-		<User>
-			<DisplayName>{{email}}</DisplayName>
-            <EMailAddress>{{email}}</EMailAddress>
-		</User>
-
-		<Account>
+        </Action>{% else %}<Account>
 			<AccountType>email</AccountType>
 			<Action>settings</Action>
 
@@ -69,7 +71,7 @@
 				<AuthRequired>on</AuthRequired>
 				{% if smtp.isStartTls %}<Encryption>tls</Encryption>{% else %}<SSL>on</SSL>{% endif %}
 			</Protocol>
-		</Account>
+		</Account>{% endif %}
 
 	</Response>
 
